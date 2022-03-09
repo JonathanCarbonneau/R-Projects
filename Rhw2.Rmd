@@ -1,0 +1,95 @@
+Jonathan Carbonneau
+I pledge my honor that I have abided by the Stevens Honor System
+Problem 1
+```{r}
+library(moments)
+n = c(20,30,50,75,100)
+Binomial  <- c()
+#calculated using the laplace function.
+laplaceDistro <- c(0.54542,0.0811,0.000347,1.47587E-7,7.5739881E-11) 
+
+
+for (i in n){
+Binomial  <- append(Binomial , pbinom(8.75, i, 0.4))
+}
+
+plot(Binomial , main="Binomial Distrabution") 
+plot(laplaceDistro, main="Laplace Distrabution") 
+plot(abs(Binomial-laplaceDistro), main="Errors of all approximations") 
+
+input <- c(70,77,68,69,84,80,75,65,76,78,82)
+
+boxplot(input)
+points(mean(input),col="red", pch = 19)
+points(min(input),col="red", pch = 19)
+points(max(input),col="red", pch = 19)
+
+skewness(rnorm(100000000, mean(input), var(input))) 
+
+```
+iii
+Error
+``` {r}
+abs(Binomial-laplaceDistro)
+
+```
+The Laplace distribution is fairly accurate
+
+iv
+As the number of samples increases the error decrees logarithmicly
+
+
+```{r}
+twoia <- c()
+twoib <- c()
+n <- 20
+for (i in 1:100){
+x<-rnorm(n,2,9)
+twoia <- append(twoia,((mean(x) -2)/sqrt(3^2/n)))
+twoib <- append(twoib,((n-2)*var(x))/sqrt(3^2))
+}
+ plot(density(twoia), main="n = 20 for (x-2)/sqrt(3^2/n)")
+ plot(density(twoib), main="n = 20 for ((n-2)*9)/sqrt(3^2)")
+ plot(twoia , twoib, main="n = 20 for ((mean(x) -2)/sqrt(3^2/n),((n-2)*var(x))/sqrt(3^2)")
+
+ twoiia <- c()
+ twoiib <- c()
+ n <- 30
+ for (i in 1:100){
+ x<-rnorm(n,2,9)
+ twoiia<- append(twoiia,(mean(x)-2)/sqrt(3^2/n))
+ twoiib <- append(twoiib,((n-2)*var(x))/sqrt(3^2))
+}
+plot(density(twoiia), main="n = 30 for (x-2)/sqrt(3^2/n)")
+plot(density(twoiib), main="n = 30 for ((n-2)*9)/sqrt(3^2)")
+plot(twoiia , twoiib, main="n = 30 for ((mean(x) -2)/sqrt(3^2/n),((n-2)*var(x))/sqrt(3^2)")
+
+twoiiia <- c()
+twoiiib <- c()
+n <- 50
+for (i in 1:100){
+x<-rnorm(n,2,9)
+twoiiia<- append(twoiiia,((mean(x)-2)/sqrt(3^2/n)))
+twoiiib <- append(twoiiib,((n-2)*var(x))/sqrt(3^2))
+}
+plot(density(twoiiia), main="n = 50 for (x-2)/sqrt(3^2/n)")
+plot(density(twoiiib), main="n = 50 for ((n-2)*9)/sqrt(3^2)")
+plot(twoiiia , twoiiib, main="n = 50 for ((mean(x) -2)/sqrt(3^2/n),((n-2)*var(x))/sqrt(3^2)")
+twoiiiia <- c()
+twoiiiib <- c()
+n <- 75
+for (i in 1:100){
+x<-rnorm(n,2,9)
+twoiiiia<- append(twoiiiia,(mean(x)-2)/sqrt(3^2/n))
+twoiiiib <- append(twoiiiib,((n-2)*var(x))/sqrt(3^2))
+}
+plot(density(twoiiiia), main="n = 75 for (x-2)/sqrt(3^2/n)")
+plot(density(twoiiiib), main="n = 75 for ((n-2)*9)/sqrt(3^2)")
+plot(twoiiiia , twoiiiib, main="n = 75 for ((mean(x) -2)/sqrt(3^2/n),((n-2)*var(x))/sqrt(3^2)")
+
+```
+v
+As the sample size n increases the probability distribution curve becomes more normal
+
+vi
+based on the probability curves and the scatter plot one can guess that the functions are corolated

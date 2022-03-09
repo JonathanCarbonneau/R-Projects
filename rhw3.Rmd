@@ -1,0 +1,52 @@
+---
+title: "q1"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+
+
+```{r}
+
+Moment <- function(srs) {
+  return((2/length(srs)) * sum(srs))
+}
+
+
+samples <- matrix(0, nrow = 100, ncol = 30)
+for (i in 1:100) {
+  samples[i,] = runif(n = 30, min = 0, max = 7)
+}
+
+
+for (i in 1:100) {
+  maximumLikelihoodEstimator[i] = max(srs = samples[i,])
+  momentEstimator[i] = Moment(srs = samples[i,])
+}
+
+
+
+n <- c(20,30,50,100,150)
+for (i in 1:5) {
+  srs <- runif(n = sizes[i], min = 0, max = 7)
+  momentEstimator1[i] = Moment(srs)
+  maximumLikelihoodEstimator1[i] = max(srs)
+}
+
+boxplot(momentEstimator, maximumLikelihoodEstimator,
+        main = "Boxplot of estimates")
+axis(1, at=1:2, labels=c("Moment Estimator", "Maximum Likelihood Estimato"))
+points(c(mean(momentEstimator), mean(maximumLikelihoodEstimator)), col="red", pch = 19)
+
+plot(momentEstimator1, pch = 19, col = "red",
+     main = "Moment Estimator")
+plot(maximumLikelihoodEstimator1, pch = 19, col = "red",
+     main = "Maximum Likelihood Estimator")
+plot(momentEstimator1, maximumLikelihoodEstimator1, pch = 19, col = "red",
+     xlab = "Moment Estimator", ylab = "Maximum Likelihood Estimator",
+     main = "estimates")
+```
+
+
